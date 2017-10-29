@@ -7,7 +7,7 @@ export function booksReducers(state ={
 			title: "A Gamme of Thrones",
 			description: "A Clash of Kings",
 			author: "George R.R. Martin",
-			image: "https://images-na.ssl-images-amazon.com/images/I/81hZPqv7zvL.jpg",
+			image: "/book.ico",
 			price: 35.45
 		},
 		{
@@ -15,14 +15,14 @@ export function booksReducers(state ={
 			title: "A Clash of Kings",
 			description: "Book Description 2",
 			author: "George R.R. Martin",
-			image: "http://sfreviews.net/large_covers/clash_of_kings.jpg",
+			image: "/book.ico",
 			price: 36.00
 		},{
 			id: 3,
 			title: "A Storm of Swords",
 			description: "Book Description 2",
 			author: "George R.R. Martin",
-			image: "https://vignette.wikia.nocookie.net/iceandfire/images/b/bd/A_storm_of_swords.png/revision/latest?cb=20130302001041",
+			image: "/book.ico",
 			price: 38.00
 		}]
 	}, action){
