@@ -6,6 +6,7 @@ import {getBooks} from '../../actions/booksActions';
 import {Grid, Row,Col} from 'react-bootstrap';
 import BookItem from './bookItem';
 import BooksForm from './booksForm';
+import Cart from './cart';
 
 class BooksList extends Component {
 	componentDidMount(){
@@ -17,8 +18,8 @@ class BooksList extends Component {
 			return(
 
 					<BookItem
-						key={booksArr.id}
-						id={booksArr.id}
+						key={booksArr._id}
+						_id={booksArr._id}
 						author={booksArr.author}
 						description={booksArr.description}
 						image={booksArr.image}
@@ -30,9 +31,22 @@ class BooksList extends Component {
 		})
         return (
             <Grid>
-            	<Row style={{marginTop:'15px'}}>
-					<BooksForm/>
-					{booksList}
+				<Row>
+					<Col xs={12} md={12} sm={12}>
+						<Cart/>
+					</Col>
+				</Row>
+            	<Row style={{margin:'15px 0'}}>
+					<Col xs={12} md={3} sm={3}>
+						<BooksForm/>
+					</Col>
+
+					<Col xs={12} md={9} sm={9}>
+						<Row>
+							{booksList}
+						</Row>
+					</Col>
+
 				</Row>
             </Grid>
         );

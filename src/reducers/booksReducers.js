@@ -3,7 +3,7 @@
 export function booksReducers(state ={
 	books:[
 		{
-			id: 1,
+			_id: 1,
 			title: "A Gamme of Thrones",
 			description: "A Clash of Kings",
 			author: "George R.R. Martin",
@@ -11,14 +11,14 @@ export function booksReducers(state ={
 			price: 35.45
 		},
 		{
-			id: 2,
+			_id: 2,
 			title: "A Clash of Kings",
 			description: "Book Description 2",
 			author: "George R.R. Martin",
 			image: "/book.ico",
 			price: 36.00
 		},{
-			id: 3,
+			_id: 3,
 			title: "A Storm of Swords",
 			description: "Book Description 2",
 			author: "George R.R. Martin",
@@ -41,7 +41,7 @@ export function booksReducers(state ={
 		case "DELETE_BOOK":
 			const currentBookToDelete = [...state.books];
 			const indexToDelete = currentBookToDelete.findIndex((book) => {
-				return book.id === action.payload.id
+				return book._id === action.payload._id
 			})
 			return {books: [
 				...currentBookToDelete.slice(0,indexToDelete),
@@ -52,7 +52,7 @@ export function booksReducers(state ={
 		case "UPDATE_BOOK":
 			const currentBookToUpdate = [...state.books];
 			const indexToUpdate = currentBookToUpdate.findIndex((book) => {
-				return book.id === action.payload.id
+				return book._id === action.payload._id
 			})
 			const newBookToUpdate = {
 				...currentBookToUpdate[indexToUpdate],

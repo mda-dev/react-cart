@@ -24,7 +24,6 @@ class BooksForm extends React.Component {
 	}
     render() {
         return (
-			<Col xs={12} sm={6} md={6} >
 				<div className="card">
 					<div className="card-body">
 						<FormGroup controlId="title" bsSize="small">
@@ -51,7 +50,6 @@ class BooksForm extends React.Component {
 						<Button onClick={this.handleBookSubmit.bind(this)} bsStyle="primary" >Save Book</Button>
 					</div>
 				</div>
-			</Col>
         )
     }
 }
