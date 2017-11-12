@@ -1,11 +1,23 @@
 "use strict"
 import React,{Component} from 'react';
 import {connect} from 'react-redux';
-import {Panel, Col, Well, Row, Button, Table, FormGroup, InputGroup, FormControl} from 'react-bootstrap';
+import {Modal, Panel, Col, Well, Row, Button, Table, FormGroup, InputGroup, FormControl} from 'react-bootstrap';
 import {bindActionCreators} from 'redux';
 import {deleteCartItem, updateCart} from '../../actions/cartActions'
 
 class Cart extends Component{
+	constructor(){
+		super();
+		this.state={
+			showModal : false
+		}
+	}
+	open(){
+		this.setState({showModal:true})
+	}
+	close(){
+		this.setState({showModal:false})
+	}
 	onDelete(_id){
 		const currentBookToDelete = this.props.cart;
 		const indexToDelete = currentBookToDelete.findIndex((cart) => {
@@ -43,7 +55,6 @@ class Cart extends Component{
 					<td>{index+1}</td>
 					<td>{cartArr.title}</td>
 					<td>{cartArr.author}</td>
-					<td>{Number(cartArr.price).toFixed(2)} $</td>
 					<td>
 						<FormGroup>
 							<InputGroup bsSize="small" style={{width:"100px"}}>
@@ -57,7 +68,12 @@ class Cart extends Component{
 							</InputGroup>
 						</FormGroup>
 					</td>
-					<td><Button onClick={this.onDelete.bind(this, cartArr._id)}bsSize="small" bsStyle="danger"> <i className="fa fa-trash"></i></Button></td>
+					<td>{Number(cartArr.price).toFixed(2)} $</td>
+					<td>
+						<Button onClick={this.onDelete.bind(this, cartArr._id)}bsSize="small" bsStyle="danger">
+							<i className="fa fa-trash"></i>
+						</Button>
+					</td>
 				</tr>
 			)
 		}, this)
@@ -74,16 +90,42 @@ class Cart extends Component{
 								<th>#</th>
 								<th>Book Name</th>
 								<th>Author</th>
-								<th>Price</th>
 								<th>Quantity</th>
+								<th>Price</th>
 								<th></th>
 							  </tr>
 							</thead>
 							<tbody>
 							  {cartItemsList}
 							</tbody>
-						  </Table>
+							<tfoot>
+								<tr>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th>Total :</th>
+									<th> {this.props.totalAmount} $</th>
+									<th>
+										<Button onClick={this.open.bind(this)}bsStyle="success" bsSize="small"> <i className="fa fa-shopping-cart"></i> Checkout</Button>
+									</th>
+								</tr>
+							</tfoot>
+
+
+						</Table>
+						<Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+							<Modal.Header closeButton>
+								<Modal.Title>Modal heading</Modal.Title>
+							</Modal.Header>
+							<Modal.Body>
+
+							</Modal.Body>
+							<Modal.Footer>
+								<Button onClick={this.close.bind(this)}>Close</Button>
+							</Modal.Footer>
+						</Modal>
 					</div>
+
 				</div>
 
 		)
@@ -91,8 +133,10 @@ class Cart extends Component{
 }
 
 function mapStateToProps(state){
+	console.log(state.cart);
 	return{
-		cart : state.cart.cart
+		cart : state.cart.cart,
+		totalAmount : state.cart.totalAmount
 	}
 }
 function mapDispatchToProps(dispatch) {

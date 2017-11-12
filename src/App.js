@@ -16,10 +16,14 @@ import {postBooks, deleteBooks, updateBooks} from './actions/booksActions'
 const middleware = applyMiddleware(logger)
 const store = createStore(reducers, middleware)
 
-import BooksList from './components/pages/booksList'
+import BooksList from './components/pages/booksList';
+import Menu from './components/menu'
 render(
 	<Provider store={store}>
-		<BooksList />
+		<div>
+			<Menu />
+			<BooksList />
+		</div>
 	</Provider>, document.getElementById('app')
 )
 
